@@ -2,7 +2,12 @@
 const typedTextSpan = document.querySelector(".typed-text");
 const cursorSpan = document.querySelector(".cursor");
 
-const textArray = ["Software Developer", "Web Developer", "Problem Solver"];
+const textArray = [
+    "Web Developer",
+    "Software Engineer",
+    "Cyber Security Analyst",
+    "Game Developer"
+];
 const typingDelay = 80;
 const erasingDelay = 40;
 const newTextDelay = 2500;
@@ -11,24 +16,24 @@ let charIndex = 0;
 
 function type() {
     if (charIndex < textArray[textArrayIndex].length) {
-        if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-        typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+        if (cursorSpan && !cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+        if (typedTextSpan) typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
         charIndex++;
         setTimeout(type, typingDelay);
     } else {
-        cursorSpan.classList.remove("typing");
+        if (cursorSpan) cursorSpan.classList.remove("typing");
         setTimeout(erase, newTextDelay);
     }
 }
 
 function erase() {
     if (charIndex > 0) {
-        if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-        typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+        if (cursorSpan && !cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+        if (typedTextSpan) typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
         charIndex--;
         setTimeout(erase, erasingDelay);
     } else {
-        cursorSpan.classList.remove("typing");
+        if (cursorSpan) cursorSpan.classList.remove("typing");
         textArrayIndex++;
         if (textArrayIndex >= textArray.length) textArrayIndex = 0;
         setTimeout(type, typingDelay + 1100);
@@ -44,19 +49,19 @@ const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 const links = document.querySelectorAll('.nav-links li');
 
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('nav-active');
-    
-    links.forEach((link, index) => {
-        if (link.style.animation) {
-            link.style.animation = '';
-        } else {
-            link.style.animation = `navLinkFade 0.3s ease forwards ${index / 7 + 0.1}s`;
-        }
+if (hamburger && navLinks && links) {
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('nav-active');
+        links.forEach((link, index) => {
+            if (link.style.animation) {
+                link.style.animation = '';
+            } else {
+                link.style.animation = `navLinkFade 0.3s ease forwards ${index / 7 + 0.1}s`;
+            }
+        });
+        hamburger.classList.toggle('toggle');
     });
-
-    hamburger.classList.toggle('toggle');
-});
+}
 
 // Smooth Scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -68,7 +73,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: 'smooth',
                 block: 'start'
             });
-            if (navLinks.classList.contains('nav-active')) {
+            if (navLinks && navLinks.classList.contains('nav-active')) {
                 hamburger.click();
             }
         }
@@ -80,39 +85,32 @@ const contactForm = document.getElementById('contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
         const formData = {
             name: document.getElementById('name').value,
             email: document.getElementById('email').value,
             message: document.getElementById('message').value
         };
-
-        console.log('Form submitted:', formData);
-        
         // Show success message with a more subtle notification
         const notification = document.createElement('div');
         notification.className = 'notification';
         notification.textContent = 'Thank you for your message. I will get back to you soon.';
         document.body.appendChild(notification);
-        
         setTimeout(() => {
             notification.classList.add('show');
         }, 100);
-        
         setTimeout(() => {
             notification.classList.remove('show');
             setTimeout(() => {
                 notification.remove();
             }, 300);
         }, 3000);
-        
         contactForm.reset();
     });
 }
 
 // Scroll to Top Button
 const scrollButton = document.createElement('button');
-scrollButton.innerHTML = '↑';
+scrollButton.innerHTML = '\u2191';
 scrollButton.className = 'scroll-top';
 document.body.appendChild(scrollButton);
 
@@ -121,7 +119,6 @@ window.addEventListener('scroll', () => {
     if (scrollTimeout) {
         window.cancelAnimationFrame(scrollTimeout);
     }
-    
     scrollTimeout = window.requestAnimationFrame(() => {
         if (window.pageYOffset > 300) {
             scrollButton.classList.add('show');
@@ -155,12 +152,10 @@ style.textContent = `
         transition: all 0.3s ease;
         z-index: 1000;
     }
-
     .notification.show {
         transform: translateX(-50%) translateY(0);
         opacity: 1;
     }
-
     .scroll-top {
         position: fixed;
         bottom: 20px;
@@ -178,16 +173,13 @@ style.textContent = `
         transition: all 0.2s ease;
         z-index: 1000;
     }
-
     .scroll-top.show {
         display: block;
     }
-
     .scroll-top:hover {
         opacity: 1;
         transform: translateY(-2px);
     }
-
     .nav-active {
         display: flex;
         flex-direction: column;
@@ -201,11 +193,9 @@ style.textContent = `
         border-bottom: 1px solid var(--border-color);
         backdrop-filter: blur(10px);
     }
-
     .nav-active li {
         margin: 0.75rem 0;
     }
-
     @keyframes navLinkFade {
         from {
             opacity: 0;
@@ -216,15 +206,12 @@ style.textContent = `
             transform: translateX(0);
         }
     }
-
     .toggle span:nth-child(1) {
         transform: rotate(-45deg) translate(-4px, 5px);
     }
-
     .toggle span:nth-child(2) {
         opacity: 0;
     }
-
     .toggle span:nth-child(3) {
         transform: rotate(45deg) translate(-4px, -5px);
     }

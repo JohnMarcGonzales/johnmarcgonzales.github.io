@@ -607,87 +607,241 @@ section h2 {
     color: #0077b5;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
+/* Career Overview Section */
+.career {
+    background: var(--section-bg);
+    padding: 6rem 5%;
+}
+.career-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    line-height: 1.8;
+}
 
-    .hamburger {
-        display: flex;
-    }
+/* Education Section */
+.education {
+    background: white;
+    padding: 6rem 5%;
+}
+.education-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    line-height: 1.8;
+    background: var(--section-bg);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.05);
+}
 
-    .hero-content h1 {
-        font-size: 2rem;
-    }
+/* Certifications Section */
+.certifications {
+    background: var(--section-bg);
+    padding: 6rem 5%;
+}
+.cert-list {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    font-size: 1.05rem;
+    color: var(--primary-color);
+    line-height: 2;
+}
+.cert-list li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.2em;
+}
+.cert-list li:before {
+    content: '\f058';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #27ae60;
+    position: absolute;
+    left: 0;
+    top: 0.1em;
+}
 
+/* Internship Section */
+.internship {
+    background: white;
+    padding: 6rem 5%;
+}
+.internship-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    line-height: 1.8;
+    background: var(--section-bg);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.05);
+}
+
+/* References Section */
+.references {
+    background: var(--section-bg);
+    padding: 6rem 5%;
+}
+.ref-list {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    color: var(--primary-color);
+    line-height: 2;
+    padding-left: 1.5rem;
+}
+.ref-list li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.2em;
+}
+.ref-list li:before {
+    content: '\f007';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #2980b9;
+    position: absolute;
+    left: 0;
+    top: 0.1em;
+}
+
+/* Contact Form Polishing */
+.contact-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    align-items: flex-start;
+}
+.contact-form {
+    flex: 1 1 350px;
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Contact Info Polishing */
+.contact-info {
+    flex: 1 1 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background: var(--section-bg);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.05);
+}
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.05rem;
+}
+.contact-item i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+/* Hero Section Animation */
+.hero-content h1 {
+    animation: fadeInDown 0.7s cubic-bezier(.77,0,.18,1) both;
+}
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.typing-text {
+    font-size: 1.3rem;
+    color: #2980b9;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    letter-spacing: 0.5px;
+    min-height: 2.2rem;
+}
+.cursor {
+    display: inline-block;
+    color: #2c3e50;
+    font-weight: bold;
+    font-size: 1.3rem;
+    animation: blink 1s infinite;
+}
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Button Glow Effect */
+.btn.primary-btn {
+    box-shadow: 0 2px 8px rgba(41,128,185,0.15);
+    position: relative;
+    overflow: hidden;
+}
+.btn.primary-btn::after {
+    content: '';
+    position: absolute;
+    left: -50%;
+    top: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, #2980b9 0%, transparent 70%);
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Section Separation */
+section {
+    margin-bottom: 0;
+    border-bottom: 1px solid var(--border-color);
+}
+section:last-of-type {
+    border-bottom: none;
+}
+
+/* Responsive Tweaks for New Sections */
+@media (max-width: 900px) {
     .contact-content {
-        grid-template-columns: 1fr;
+        flex-direction: column;
         gap: 2rem;
     }
-
-    .hero-buttons {
-        grid-template-columns: 1fr;
-    }
-
-    .btn {
+    .contact-form, .contact-info {
         width: 100%;
-        text-align: center;
+        padding: 1.2rem;
     }
-
-    section {
-        padding: 4rem 5%;
-    }
-
-    section h2 {
-        font-size: 1.75rem;
-    }
-
-    .cv-preview {
-        height: 400px;
-    }
-    
-    .hero-buttons .btn {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .project-links {
-        flex-direction: column;
-    }
-
-    .project-links .btn {
-        width: 100%;
-    }
-
-    .github-stats {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
-    .skills-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .skill-card {
-        padding: 1.5rem;
-    }
-
-    .skill-card i {
-        font-size: 2rem;
-    }
-
-    .nav-social {
-        display: none;
-    }
-
-    .linkedin-contact {
-        margin-top: 1rem;
+    .education-content, .internship-content, .career-content, .cert-list, .ref-list {
+        padding: 1.2rem;
     }
 }
 
