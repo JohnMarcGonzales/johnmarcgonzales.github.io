@@ -385,7 +385,7 @@ section h2 {
     color: var(--primary-color);
 }
 .project-icon i {
-    font-size: clamp(2.75rem, 7vw, 4.25rem);
+    font-size: clamp(2.25rem, 6vw, 4rem);
     opacity: 0.9;
     transition: transform 0.2s ease, opacity 0.2s ease;
 }
@@ -668,6 +668,20 @@ section h2 {
 
 .linkedin-btn:hover {
     background: #006399;
+    transform: translateY(-1px);
+}
+
+/* Credly Button Styles */
+.credly-btn {
+    background: #ff6a00; /* Credly-like orange */
+    color: white;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.credly-btn:hover {
+    background: #e85f00;
     transform: translateY(-1px);
 }
 

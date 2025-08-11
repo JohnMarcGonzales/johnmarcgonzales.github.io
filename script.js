@@ -250,3 +250,31 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style); 
+
+// Dynamic sizing for project icons based on container size
+(function dynamicProjectIcons() {
+    const cards = document.querySelectorAll('.project-image');
+    if (!('ResizeObserver' in window) || cards.length === 0) return;
+
+    const resizer = new ResizeObserver(entries => {
+        for (const entry of entries) {
+            const el = entry.target;
+            const icon = el.querySelector('.project-icon i');
+            if (!icon) continue;
+            const rect = el.getBoundingClientRect();
+            const size = Math.max(28, Math.min(rect.width, rect.height) * 0.4); // ~40% of shorter side
+            icon.style.fontSize = `${size}px`;
+        }
+    });
+
+    cards.forEach(c => {
+        resizer.observe(c);
+        // initial sizing
+        const icon = c.querySelector('.project-icon i');
+        if (icon) {
+            const rect = c.getBoundingClientRect();
+            const size = Math.max(28, Math.min(rect.width, rect.height) * 0.4);
+            icon.style.fontSize = `${size}px`;
+        }
+    });
+})();
