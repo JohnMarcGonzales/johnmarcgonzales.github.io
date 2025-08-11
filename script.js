@@ -44,6 +44,39 @@ document.addEventListener("DOMContentLoaded", function() {
     if (textArray.length) setTimeout(type, newTextDelay + 250);
 });
 
+// Theme Toggle
+const themeToggleBtn = document.getElementById('theme-toggle');
+const rootEl = document.documentElement;
+
+function updateThemeIcon() {
+    if (!themeToggleBtn) return;
+    themeToggleBtn.innerHTML = rootEl.classList.contains('dark-theme') ? '☀️' : '🌙';
+}
+
+function setTheme(theme) {
+    const enableDark = theme === 'dark';
+    rootEl.classList.toggle('dark-theme', enableDark);
+    try { localStorage.setItem('theme', enableDark ? 'dark' : 'light'); } catch (_) {}
+    updateThemeIcon();
+}
+
+// Initialize theme from saved preference or system preference
+(() => {
+    let saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (_) {}
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(saved ? saved : (prefersDark ? 'dark' : 'light'));
+})();
+
+if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+        const next = rootEl.classList.contains('dark-theme') ? 'light' : 'dark';
+        setTheme(next);
+    themeToggleBtn.classList.add('pop');
+    setTimeout(() => themeToggleBtn.classList.remove('pop'), 220);
+    });
+}
+
 // Mobile Menu Toggle
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
@@ -186,7 +219,7 @@ style.textContent = `
         position: absolute;
         right: 0;
         top: 70px;
-        background: rgba(255, 255, 255, 0.98);
+    background: var(--nav-bg);
         width: 100%;
         text-align: center;
         padding: 1rem;

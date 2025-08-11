@@ -14,6 +14,22 @@
     --section-bg: #f8f9fa;
     --transition: all 0.2s ease;
     --border-color: #e9ecef;
+    --nav-bg: rgba(255, 255, 255, 0.98);
+    --footer-bg: #2c3e50;
+}
+
+/* Dark theme variables */
+.dark-theme {
+    --primary-color: #9ec1ff;
+    --secondary-color: #7aa7ff;
+    --text-color: #e6e6e6;
+    --light-text: #b8c2cc;
+    --background: #0f172a;
+    --section-bg: #111827;
+    --transition: all 0.2s ease;
+    --border-color: #263041;
+    --nav-bg: rgba(15, 23, 42, 0.9);
+    --footer-bg: #0b1220;
 }
 
 html {
@@ -32,7 +48,7 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.98);
+    background: var(--nav-bg);
     padding: 1rem 5%;
     display: flex;
     justify-content: space-between;
@@ -47,12 +63,16 @@ body {
     font-weight: 600;
     color: var(--text-color);
     letter-spacing: -0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
     gap: 2.5rem;
+    align-items: center;
 }
 
 .nav-links a {
@@ -93,6 +113,66 @@ body {
     transition: var(--transition);
 }
 
+/* Theme toggle button */
+.theme-toggle {
+    margin-left: 0.75rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 0.35rem 0.55rem;
+    border-radius: 6px;
+    cursor: pointer;
+    line-height: 1;
+    vertical-align: middle;
+        transition: var(--transition);
+        font-size: 1.1rem;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+        background-image: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.04));
+}
+.theme-toggle:hover {
+    background: var(--section-bg);
+    transform: translateY(-1px);
+}
+.theme-toggle:active { transform: translateY(0); }
+.theme-toggle i { pointer-events: none; }
+
+/* Fun pop animation for the toggle */
+.theme-toggle.pop { animation: theme-pop 220ms ease; }
+@keyframes theme-pop {
+    0% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.12) translateY(-1px); }
+    100% { transform: scale(1) translateY(0); }
+}
+
+/* Floating theme toggle button */
+.theme-toggle.theme-fab {
+    position: fixed;
+    bottom: 20px;
+    right: 76px; /* offset from scroll-top */
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0;
+    background: var(--background);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    z-index: 1000;
+}
+.theme-toggle.theme-fab:hover {
+    background: var(--section-bg);
+    transform: translateY(-2px);
+}
+@media (max-width: 640px) {
+    .theme-toggle.theme-fab {
+        bottom: 76px; /* stack above scroll-top on phones */
+        right: 20px;
+    }
+}
+
 /* Hero Section */
 .hero {
     min-height: 100vh;
@@ -110,7 +190,7 @@ body {
 }
 
 .hero-content h1 {
-    font-size: 2.5rem;
+    font-size: clamp(1.9rem, 3.5vw + 0.5rem, 3.25rem);
     margin-bottom: 1rem;
     color: var(--text-color);
     font-weight: 700;
@@ -168,13 +248,13 @@ body {
 
 /* Sections */
 section {
-    padding: 6rem 5%;
+    padding: clamp(3rem, 5vw, 6rem) 5%;
 }
 
 section h2 {
     text-align: left;
-    font-size: 2rem;
-    margin-bottom: 3rem;
+    font-size: clamp(1.4rem, 1.6vw + 1rem, 2rem);
+    margin-bottom: clamp(1.25rem, 3vw, 3rem);
     color: var(--text-color);
     font-weight: 700;
     letter-spacing: -0.5px;
@@ -208,7 +288,7 @@ section h2 {
 }
 
 .skill-card {
-    background: white;
+    background: var(--background);
     padding: 1.75rem;
     border-radius: 8px;
     text-align: left;
@@ -275,7 +355,7 @@ section h2 {
 }
 
 .project-card {
-    background: white;
+    background: var(--background);
     border-radius: 6px;
     overflow: hidden;
     border: 1px solid var(--border-color);
@@ -483,7 +563,7 @@ section h2 {
 
 /* Footer */
 .footer {
-    background: var(--text-color);
+    background: var(--footer-bg);
     color: white;
     text-align: center;
     padding: 2rem 5%;
@@ -512,7 +592,7 @@ section h2 {
 .cv-content {
     max-width: 1000px;
     margin: 0 auto;
-    background: white;
+    background: var(--background);
     border-radius: 6px;
     border: 1px solid var(--border-color);
     overflow: hidden;
@@ -533,7 +613,7 @@ section h2 {
 .cv-actions {
     padding: 1.25rem;
     text-align: center;
-    background: white;
+    background: var(--background);
     border-top: 1px solid var(--border-color);
 }
 
@@ -622,7 +702,7 @@ section h2 {
 
 /* Education Section */
 .education {
-    background: white;
+    background: var(--background);
     padding: 6rem 5%;
 }
 .education-content {
@@ -667,7 +747,7 @@ section h2 {
 
 /* Internship Section */
 .internship {
-    background: white;
+    background: var(--background);
     padding: 6rem 5%;
 }
 .internship-content {
@@ -721,7 +801,7 @@ section h2 {
 }
 .contact-form {
     flex: 1 1 350px;
-    background: white;
+    background: var(--background);
     border-radius: 8px;
     padding: 2rem;
     box-shadow: 0 2px 8px rgba(44,62,80,0.05);
@@ -792,7 +872,7 @@ section h2 {
 }
 .cursor {
     display: inline-block;
-    color: #2c3e50;
+    color: var(--text-color);
     font-weight: bold;
     font-size: 1.3rem;
     animation: blink 1s infinite;
@@ -843,6 +923,43 @@ section:last-of-type {
     .education-content, .internship-content, .career-content, .cert-list, .ref-list {
         padding: 1.2rem;
     }
+}
+
+/* Collapse nav earlier to avoid wrapping on tablets */
+@media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+}
+
+/* Tablet and down */
+@media (max-width: 1024px) {
+    .nav-links {
+        gap: 1.25rem;
+    }
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+}
+
+/* Phone */
+@media (max-width: 640px) {
+    .navbar {
+        padding: 0.75rem 5%;
+    }
+    .nav-brand { font-size: 1.1rem; }
+    .hero { padding: 4.5rem 5% 2.5rem; }
+    .hero-buttons { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .contact-content { gap: 1.5rem; }
+    .project-links { flex-direction: column; }
+    .nav-links {
+        display: none;
+    }
+    .hamburger { display: flex; }
 }
 
 /* Minimal Animations */
