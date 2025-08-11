@@ -26,4 +26,5 @@ I believe in working with compassion, integrity, and a drive to solve real-world
 
 Thank you for visiting my portfolio!
 
-[LinkedIn](https://www.linkedin.com/in/john-marc-gonzales-a725a9290/) | [GitHub](https://github.com/JohnMarcGonzales) 
+
+[LinkedIn](https://www.linkedin.com/in/john-marc-gonzales-a725a9290/) | [GitHub](https://github.com/JohnMarcGonzales) | [Credly](https://www.credly.com/users/john-marc-gonzales)
